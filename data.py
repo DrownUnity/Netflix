@@ -39,3 +39,10 @@ plt.xlabel("Duration")
 plt.axhline(avg_duration, color="red", linestyle="--", label=f"Avg Duration: {avg_duration:.2f} mins")
 plt.xticks(rotation=0)
 plt.show()
+
+# Countries
+
+country_count = netflix_df["country"].value_counts().head(10)
+country_count.plot(kind="bar")
+plt.xticks(rotation=45)
+plt.show()
