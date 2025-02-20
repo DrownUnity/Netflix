@@ -10,8 +10,6 @@ netflix_df["type"] = netflix_df['type'].astype('string')
 netflix_df["genre"] = netflix_df['genre'].astype('string')
 netflix_df["country"] = netflix_df["country"].astype('string')
 
-print(netflix_df.info())
-
 # Deleting Shows from the DB
 
 netflix_df.drop(netflix_df[netflix_df['type'] == 'TV Show'].index, inplace=True)
@@ -30,4 +28,9 @@ plt.show()
 
 # Average duration
 
-print(netflix_df["duration"].mean())
+avg_duration = netflix_df["duration"].mean().round()
+
+netflix_df["duration"].hist()
+plt.show()
+
+print(netflix_df["duration"].describe())
