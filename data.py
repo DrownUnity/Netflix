@@ -28,9 +28,14 @@ plt.show()
 
 # Average duration
 
-avg_duration = netflix_df["duration"].mean().round()
+avg_duration = netflix_df["duration"].mean()
 
-netflix_df["duration"].hist()
+bins = [0, 30, 60, 90, 120, 150, 180]
+labels = ["0-30", "31-60", "61-90", "91-120", "121-150", "151-180"]
+
+netflix_df["duration_bins"] = pd.cut(netflix_df["duration"], bins=bins, labels=labels, right=False)
+netflix_df["duration_bins"].value_counts().plot(kind="bar")
+plt.xlabel("Duration")
+plt.axhline(avg_duration, color="red", linestyle="--", label=f"Avg Duration: {avg_duration:.2f} mins")
+plt.xticks(rotation=0)
 plt.show()
-
-print(netflix_df["duration"].describe())
